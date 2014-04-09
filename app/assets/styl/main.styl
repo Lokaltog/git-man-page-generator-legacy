@@ -3,6 +3,7 @@ reset-html5()
 
 // theme settings
 $font-main = sans-serif
+$font-monospace = monospace
 $font-size = 16px
 $color-background = #fff
 $color-foreground = #333
@@ -21,6 +22,12 @@ a
 	&:hover
 		color: darken($color-theme, 10)
 
+p
+	margin: ($margin / 2) 0
+
+code
+	font-family: $font-monospace
+
 header, #contents, footer
 	margin: $margin auto
 	width: $width
@@ -37,6 +44,12 @@ header
 		font: bold $font-size + 10px $font-main
 		color: $color-theme
 		line-height: @height
+
+		.command-name
+			font-family: $font-monospace
+			margin: 0 ($margin / 2) 0 0
+			&::after
+				content: '(1)'
 
 	button
 		background-color: $color-theme
@@ -63,6 +76,35 @@ header
 
 	.block
 		margin: $margin 0 $margin $margin
+
+	#name
+		.command-name
+			font-family: $font-monospace
+		.command-action
+			&::before
+				content: ' — '
+
+	#synopsis
+		font-family: $font-monospace
+
+	#options
+		dt
+			font-family: $font-monospace
+			font-weight: bold
+			margin: ($margin / 2) 0 0 0
+		dd
+			margin: 0 0 0 $margin
+
+	#see-also
+		font-family: $font-monospace
+		text-transform: uppercase
+		li
+			display: inline
+			&::after
+				content: '(1), '
+			&:last-child
+				&::after
+					content: '(1)'
 
 footer
 	border-top: 1px solid rgba(#000, .2)

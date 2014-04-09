@@ -8,7 +8,10 @@ html
 
 	body
 		header
-			h1 Baba: git man page generator
+			h1
+				span.command-name
+				span.manual-title Git Manual
+
 			ul#actions
 				li
 					button#refresh Generate new man page
@@ -17,14 +20,20 @@ html
 			h1 Name
 			.block
 				#name
+					span.command-name
+					span.command-action
 
 			h1 Synopsis
 			.block
 				#synopsis
+					span.command-name
+					span.command-arguments
 
 			h1 Description
 			.block
 				#description
+					p.command-description
+					.contents
 
 			h1 Options
 			.block
@@ -39,7 +48,8 @@ html
 				= ' '
 				a(href='https://github.com/Lokaltog') Lokaltog
 				= ' - '
-				a(href='https://github.com/Lokaltog/baba-git-man-page-generator') Source repo
+				a(href='https://github.com/Lokaltog/baba-git-man-page-generator') GitHub repo
+
 			p Inspired by
 				= ' '
 				a(href='http://www.reddit.com/user/InconsolableCellist/') InconsolableCellist's
