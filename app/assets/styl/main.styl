@@ -1,0 +1,75 @@
+global-reset()
+reset-html5()
+
+// theme settings
+$font-main = sans-serif
+$font-size = 16px
+$color-background = #fff
+$color-foreground = #333
+$width = 800px
+$margin = 30px
+$color-theme = #37a
+
+// layout
+html, body
+	background: $color-background
+	color: $color-foreground
+	font: $font-size/1.4 $font-main
+
+a
+	color: $color-theme
+	&:hover
+		color: darken($color-theme, 10)
+
+header, #contents, footer
+	margin: $margin auto
+	width: $width
+
+header
+	border-bottom: 1px solid rgba(#000, .2)
+	border-top: 1px solid rgba(#000, .2)
+	height: 40px
+	line-height: @height
+	padding: ($margin / 2) 0
+	position: relative
+
+	h1
+		font: bold $font-size + 10px $font-main
+		color: $color-theme
+		line-height: @height
+
+	button
+		background-color: $color-theme
+		border: 0
+		color: #fff
+		cursor: pointer
+		font: $font-size/@height $font-main
+		margin: 0
+		padding: 0 ($margin / 2)
+		position: absolute
+		right: 0
+		top: ($margin / 2)
+		&:hover
+			background-color: darken($color-theme, 10)
+
+#contents
+	margin: $margin auto
+	width: $width
+
+	h1
+		color: $color-theme
+		font: bold $font-size + 5px $font-main
+		text-transform: uppercase
+
+	.block
+		margin: $margin 0 $margin $margin
+
+footer
+	border-top: 1px solid rgba(#000, .2)
+	opacity: .7
+	text-align: center
+	&:hover
+		opacity: 1
+
+	p
+		margin: ($margin / 2) 0 0 0

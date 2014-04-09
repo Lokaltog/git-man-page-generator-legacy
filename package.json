@@ -1,0 +1,33 @@
+{
+	"name": "baba-git-man-page-generator",
+	"version": "0.0.1a1",
+	"private": true,
+	"author": "Kim Silkebækken <kim.silkebaekken@gmail.com>",
+	"description": "Baba: git man page generator.",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Lokaltog/baba-git-man-page-generator"
+	},
+	"dependencies" : {
+		"jade": "*",
+		"nib": "*",
+		"stylus": "*",
+		"uglify-js": "*",
+
+		"grunt": "*",
+		"grunt-contrib-clean": "*",
+		"grunt-contrib-cssmin": "*",
+		"grunt-contrib-htmlmin": "*",
+		"grunt-contrib-jade": "*",
+		"grunt-contrib-stylus": "*",
+		"grunt-contrib-uglify": "*",
+		"grunt-contrib-watch": "*",
+		"grunt-html-smoosher": "*",
+		"grunt-image-embed": "*",
+		"grunt-sync": "*",
+		"matchdep": "*"
+	},
+	"engines": {
+		"node": ">=0.10"
+	}
+}

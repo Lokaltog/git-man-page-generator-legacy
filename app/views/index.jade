@@ -1,0 +1,49 @@
+doctype html
+html
+	head
+		meta(charset='utf-8')
+		meta(http-equiv='Content-Type', content='text/html;charset=utf-8')
+		title Baba: git man page generator
+		link(rel='stylesheet', href='static/css/main.css', type='text/css')
+
+	body
+		header
+			h1 Baba: git man page generator
+			ul#actions
+				li
+					button#refresh Generate new man page
+
+		section#contents
+			h1 Name
+			.block
+				#name
+
+			h1 Synopsis
+			.block
+				#synopsis
+
+			h1 Description
+			.block
+				#description
+
+			h1 Options
+			.block
+				dl#options
+
+			h1 See also
+			.block
+				ul#see-also
+
+		footer
+			p Created by
+				= ' '
+				a(href='https://github.com/Lokaltog') Lokaltog
+				= ' - '
+				a(href='https://github.com/Lokaltog/baba-git-man-page-generator') Source repo
+			p Inspired by
+				= ' '
+				a(href='http://www.reddit.com/user/InconsolableCellist/') InconsolableCellist's
+				= ' '
+				a(href='http://www.antichipotle.com/git/') Markov Chain-based generator
+
+	script(src='static/js/main.js')
