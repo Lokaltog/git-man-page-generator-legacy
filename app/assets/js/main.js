@@ -69,7 +69,7 @@ var refresh = function () {
 	// argument descriptions
 	var argDesc = []
 	rawArguments.forEach(function (arg) {
-		argDesc.push('<dt>' + arg + '<dd>' + p.render('statement'))
+		argDesc.push('<dt>' + arg + '<dd>' + p.render('optionDescription'))
 	})
 	$('#options').innerHTML = argDesc.join('')
 
