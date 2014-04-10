@@ -19,7 +19,8 @@ var refresh = function () {
 	p.setGrammar(g)
 
 	// command name and description
-	var commandName = p.render('commandName')
+	var commandNameRaw = p.render('commandNameRaw')
+	var commandName = '<code>' + commandNameRaw + '</code>'
 	var commandAction = p.render('action')
 	var commandDescription = p.render('commandDescription')
 	var commandNameContainers = $$('.command-name')
@@ -28,6 +29,7 @@ var refresh = function () {
 		commandNameContainers[i].innerHTML = commandName
 	}
 
+	document.title = commandNameRaw + ' - git man page generator'
 	$('.command-action').innerHTML = commandAction
 	$('.command-description').innerHTML = commandName + ' ' + commandDescription
 

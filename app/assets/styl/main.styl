@@ -28,9 +28,15 @@ p
 code
 	font-family: $font-monospace
 
-header, #contents, footer
+header, #contents, footer, .disclaimer
 	margin: $margin auto
 	width: $width
+
+.disclaimer
+	background: #fed
+	padding: ($margin / 2) 0
+	text-align: center
+	color: #410
 
 header
 	border-bottom: 1px solid rgba(#000, .2)
@@ -48,6 +54,7 @@ header
 		.command-name
 			font-family: $font-monospace
 			margin: 0 ($margin / 2) 0 0
+			text-transform: uppercase
 			&::after
 				content: '(1)'
 
@@ -97,7 +104,6 @@ header
 
 	#see-also
 		font-family: $font-monospace
-		text-transform: uppercase
 		li
 			display: inline
 			&::after
