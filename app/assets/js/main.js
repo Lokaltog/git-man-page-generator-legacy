@@ -3,7 +3,7 @@ Baba.init(babaGrammars.gitManual, [babaTransforms.common, babaTransforms.gitManu
 var seedLength = 32
 var urlSeed = (document.URL.split('#')[1] || '').slice(0, seedLength)
 
-function randomSeed (seed) {
+function randomSeed(seed) {
 	if (seed) {
 		// Seed with provided seed
 		Math.seedrandom(seed)
@@ -11,9 +11,9 @@ function randomSeed (seed) {
 	}
 
 	// Generate new random seed
-	var seed = Math.seedrandom()
+	seed = Math.seedrandom()
 	var hex = ''
-	for (var i=0; i < seed.length; i++) {
+	for (var i = 0; i < seed.length; i++) {
 		hex += '' + seed.charCodeAt(i).toString(16)
 	}
 	var seedSliced = hex.slice(0, seedLength)
@@ -21,22 +21,26 @@ function randomSeed (seed) {
 
 	return seedSliced
 }
-function $ (selector, el) {
+
+function $(selector, el) {
 	if (!el) {
 		el = document
 	}
 	return el.querySelector(selector)
 }
-function $$ (selector, el) {
-	if (! el) {
+
+function $$(selector, el) {
+	if (!el) {
 		el = document
 	}
 	return el.querySelectorAll(selector)
 }
-function randomInt (min, max) {
+
+function randomInt(min, max) {
 	return Math.floor(Math.random() * (max - min + 1)) + min
 }
-function refresh () {
+
+function refresh() {
 	// handle url seed (permalink)
 	var seed = randomSeed(urlSeed)
 	urlSeed = null
@@ -48,9 +52,10 @@ function refresh () {
 	var commandAction = Baba.render(babaGrammars.gitManual['command-action'])
 	var commandDescription = Baba.render(babaGrammars.gitManual['command-description'])
 	var commandNameContainers = $$('.command-name')
+	var i
 
 	$('header h1').innerHTML = commandName
-	for (var i = 0; i < commandNameContainers.length; i++) {
+	for (i = 0; i < commandNameContainers.length; i += 1) {
 		commandNameContainers[i].innerHTML = commandName
 	}
 
@@ -61,18 +66,19 @@ function refresh () {
 	// arguments
 	var arguments = []
 	var rawArguments = []
-	for (var i = 0; i < randomInt(2, 4); i++) {
+	var argument = ''
+	for (i = 0; i < randomInt(2, 4); i += 1) {
 		if (Math.random() > .5) {
 			var optarg = []
-			for (var i = 0; i < randomInt(2, 4); i++) {
+			for (var i = 0; i < randomInt(2, 4); i += 1) {
 				var a = Baba.render(babaGrammars.gitManual['command-option-raw'])
 				rawArguments.push(a)
 				optarg.push(a)
 			}
-			var argument = '[ ' + optarg.join(' | ') + ' ]'
+			argument = '[ ' + optarg.join(' | ') + ' ]'
 		}
 		else {
-			var argument = Baba.render(babaGrammars.gitManual['command-option-raw'])
+			argument = Baba.render(babaGrammars.gitManual['command-option-raw'])
 			rawArguments.push(argument)
 
 			if (Math.random() > .5) {
@@ -86,7 +92,7 @@ function refresh () {
 
 	// description
 	var description = ''
-	for (var i = 0; i < randomInt(2, 4); i++) {
+	for (var i = 0; i < randomInt(2, 4); i += 1) {
 		description += '<p>' + Baba.render(babaGrammars.gitManual.paragraph) + '</p>'
 	}
 	$('#description .contents').innerHTML = description
@@ -100,18 +106,15 @@ function refresh () {
 
 	// see also
 	var seeAlso = []
-	for (var i = 0; i < randomInt(2, 4); i++) {
+	for (i = 0; i < randomInt(2, 4); i += 1) {
 		seeAlso.push('<li><a href="#" class="refresh">' + Baba.render(babaGrammars.gitManual['command-name']) + '</a>')
 	}
 	$('#see-also').innerHTML = seeAlso.join('')
 
 	// add event listeners to refresh links
 	var refreshEls = $$('.refresh')
-	for (var i = 0; i < refreshEls.length; i++) {
-		refreshEls[i].addEventListener('click', function (ev) {
-			ev.stopPropagation()
-			refresh()
-		})
+	for (i = 0; i < refreshEls.length; i += 1) {
+		refreshEls[i].addEventListener('click', refresh)
 	}
 }
 refresh()
