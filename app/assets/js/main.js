@@ -18,9 +18,9 @@ var randomInt = function (min, max) {
 var refresh = function () {
 	// not the best JS code, but it works well and doesn't depend on something like jQuery
 	// command name and description
-	var commandNameRaw = Baba.render(babaGrammars.gitManual['command-name-raw'])
+	var commandNameRaw = Baba.render(babaGrammars.gitManual['command-name-main'])
 	var commandName = '<code>' + commandNameRaw + '</code>'
-	var commandAction = Baba.render(babaGrammars.gitManual['action'])
+	var commandAction = Baba.render(babaGrammars.gitManual['command-action'])
 	var commandDescription = Baba.render(babaGrammars.gitManual['command-description'])
 	var commandNameContainers = $$('.command-name')
 
@@ -68,7 +68,7 @@ var refresh = function () {
 	// argument descriptions
 	var argDesc = []
 	rawArguments.forEach(function (arg) {
-		argDesc.push('<dt>' + arg + '<dd>' + Baba.render(babaGrammars.gitManual['command-description']))
+		argDesc.push('<dt>' + arg + '<dd>' + Baba.render(babaGrammars.gitManual['option-description']))
 	})
 	$('#options').innerHTML = argDesc.join('')
 
