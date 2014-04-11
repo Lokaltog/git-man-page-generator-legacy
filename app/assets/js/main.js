@@ -1,5 +1,26 @@
 Baba.init(babaGrammars.gitManual, [babaTransforms.common, babaTransforms.gitManual])
 
+var seedLength = 32
+var urlSeed = (document.URL.split('#')[1] || '').slice(0, seedLength)
+
+function randomSeed (seed) {
+	if (seed) {
+		// Seed with provided seed
+		Math.seedrandom(seed)
+		return seed
+	}
+
+	// Generate new random seed
+	var seed = Math.seedrandom()
+	var hex = ''
+	for (var i=0; i < seed.length; i++) {
+		hex += '' + seed.charCodeAt(i).toString(16)
+	}
+	var seedSliced = hex.slice(0, seedLength)
+	Math.seedrandom(seedSliced)
+
+	return seedSliced
+}
 var $ = function (selector, el) {
 	if (!el) {
 		el = document
@@ -16,7 +37,11 @@ var randomInt = function (min, max) {
 	return Math.floor(Math.random() * (max - min + 1)) + min
 }
 var refresh = function () {
-	// not the best JS code, but it works well and doesn't depend on something like jQuery
+	// handle url seed (permalink)
+	var seed = randomSeed(urlSeed)
+	urlSeed = null
+	$('#permalink').setAttribute('href', '#' + seed)
+
 	// command name and description
 	var commandNameRaw = Baba.render(babaGrammars.gitManual['command-name-main'])
 	var commandName = '<code>' + commandNameRaw + '</code>'
@@ -24,6 +49,7 @@ var refresh = function () {
 	var commandDescription = Baba.render(babaGrammars.gitManual['command-description'])
 	var commandNameContainers = $$('.command-name')
 
+	$('header h1').innerHTML = commandName
 	for (var i = 0; i < commandNameContainers.length; i++) {
 		commandNameContainers[i].innerHTML = commandName
 	}

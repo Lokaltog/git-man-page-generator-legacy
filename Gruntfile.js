@@ -11,6 +11,7 @@ module.exports = function (grunt) {
 			'app/assets/js/baba/grammar/common.js',
 			'app/assets/js/baba/grammar/git-manual.js',
 			'app/assets/js/baba/baba.js',
+			'app/assets/js/seedrandom/seedrandom.js',
 			'app/assets/js/main.js',
 		],
 	}

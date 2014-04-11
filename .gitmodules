@@ -1,3 +1,6 @@
 [submodule "app/assets/js/baba"]
 	path = app/assets/js/baba
 	url = https://github.com/Lokaltog/baba.git
+[submodule "app/assets/js/seedrandom"]
+	path = app/assets/js/seedrandom
+	url = https://github.com/davidbau/seedrandom.git
