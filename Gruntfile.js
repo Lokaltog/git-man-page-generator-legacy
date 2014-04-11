@@ -8,8 +8,9 @@ module.exports = function (grunt) {
 
 	jsFiles = {
 		'webroot/static/js/main.js': [
-			'app/assets/js/baba/parser.js',
-			'app/assets/js/baba/grammars/git-manual.js',
+			'app/assets/js/baba/grammar/common.js',
+			'app/assets/js/baba/grammar/git-manual.js',
+			'app/assets/js/baba/baba.js',
 			'app/assets/js/main.js',
 		],
 	}
@@ -141,7 +142,7 @@ module.exports = function (grunt) {
 					},
 					beautify: false,
 					mangle: {
-						toplevel: false,
+						toplevel: true,
 					},
 					warnings: true,
 				},

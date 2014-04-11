@@ -1,3 +1,5 @@
+Baba.init(babaGrammars.gitManual, babaTransforms.common)
+
 var $ = function (selector, el) {
 	if (!el) {
 		el = document
@@ -14,15 +16,12 @@ var randomInt = function (min, max) {
 	return Math.floor(Math.random() * (max - min + 1)) + min
 }
 var refresh = function () {
-	var p = new GrammarParser()
-	var g = GitManualGrammar(p)
-	p.setGrammar(g)
-
+	// not the best JS code, but it works well and doesn't depend on something like jQuery
 	// command name and description
-	var commandNameRaw = p.render('commandNameRaw')
+	var commandNameRaw = Baba.render(babaGrammars.gitManual['command-name-raw'])
 	var commandName = '<code>' + commandNameRaw + '</code>'
-	var commandAction = p.render('action')
-	var commandDescription = p.render('commandDescription')
+	var commandAction = Baba.render(babaGrammars.gitManual['action'])
+	var commandDescription = Baba.render(babaGrammars.gitManual['command-description'])
 	var commandNameContainers = $$('.command-name')
 
 	for (var i = 0; i < commandNameContainers.length; i++) {
@@ -40,14 +39,14 @@ var refresh = function () {
 		if (Math.random() > .5) {
 			var optarg = []
 			for (var i = 0; i < randomInt(2, 4); i++) {
-				var a = p.render('commandOptionRaw')
+				var a = Baba.render(babaGrammars.gitManual['command-option-raw'])
 				rawArguments.push(a)
 				optarg.push(a)
 			}
 			var argument = '[ ' + optarg.join(' | ') + ' ]'
 		}
 		else {
-			var argument = p.render('commandOptionRaw')
+			var argument = Baba.render(babaGrammars.gitManual['command-option-raw'])
 			rawArguments.push(argument)
 
 			if (Math.random() > .5) {
@@ -62,21 +61,21 @@ var refresh = function () {
 	// description
 	var description = ''
 	for (var i = 0; i < randomInt(2, 4); i++) {
-		description += '<p>' + p.render('paragraph') + '</p>'
+		description += '<p>' + Baba.render(babaGrammars.gitManual.paragraph) + '</p>'
 	}
 	$('#description .contents').innerHTML = description
 
 	// argument descriptions
 	var argDesc = []
 	rawArguments.forEach(function (arg) {
-		argDesc.push('<dt>' + arg + '<dd>' + p.render('optionDescription'))
+		argDesc.push('<dt>' + arg + '<dd>' + Baba.render(babaGrammars.gitManual['command-description']))
 	})
 	$('#options').innerHTML = argDesc.join('')
 
 	// see also
 	var seeAlso = []
 	for (var i = 0; i < randomInt(2, 4); i++) {
-		seeAlso.push('<li><a href="#" onclick="refresh(); return false">' + p.render('commandName') + '</a>')
+		seeAlso.push('<li><a href="#" onclick="refresh(); return false">' + Baba.render(babaGrammars.gitManual['command-name']) + '</a>')
 	}
 	$('#see-also').innerHTML = seeAlso.join('')
 }
