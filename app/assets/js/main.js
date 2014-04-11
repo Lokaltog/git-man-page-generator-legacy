@@ -21,22 +21,22 @@ function randomSeed (seed) {
 
 	return seedSliced
 }
-var $ = function (selector, el) {
+function $ (selector, el) {
 	if (!el) {
 		el = document
 	}
 	return el.querySelector(selector)
 }
-var $$ = function (selector, el) {
+function $$ (selector, el) {
 	if (! el) {
 		el = document
 	}
 	return el.querySelectorAll(selector)
 }
-var randomInt = function (min, max) {
+function randomInt (min, max) {
 	return Math.floor(Math.random() * (max - min + 1)) + min
 }
-var refresh = function () {
+function refresh () {
 	// handle url seed (permalink)
 	var seed = randomSeed(urlSeed)
 	urlSeed = null
@@ -101,9 +101,18 @@ var refresh = function () {
 	// see also
 	var seeAlso = []
 	for (var i = 0; i < randomInt(2, 4); i++) {
-		seeAlso.push('<li><a href="#" onclick="refresh(); return false">' + Baba.render(babaGrammars.gitManual['command-name']) + '</a>')
+		seeAlso.push('<li><a href="#" class="refresh">' + Baba.render(babaGrammars.gitManual['command-name']) + '</a>')
 	}
 	$('#see-also').innerHTML = seeAlso.join('')
+
+	// add event listeners to refresh links
+	var refreshEls = $$('.refresh')
+	for (var i = 0; i < refreshEls.length; i++) {
+		refreshEls[i].addEventListener('click', function (ev) {
+			ev.stopPropagation()
+			refresh()
+		})
+	}
 }
 refresh()
-$('button#refresh').addEventListener('click', refresh)
+$('#refresh').addEventListener('click', refresh)
