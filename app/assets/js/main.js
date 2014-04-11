@@ -1,4 +1,4 @@
-Baba.init(babaGrammars.gitManual, babaTransforms.common)
+Baba.init(babaGrammars.gitManual, [babaTransforms.common, babaTransforms.gitManual])
 
 var $ = function (selector, el) {
 	if (!el) {
