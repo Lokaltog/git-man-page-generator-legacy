@@ -15,6 +15,7 @@
 		"uglify-js": "*",
 
 		"grunt": "*",
+		"grunt-cli": "*",
 		"grunt-contrib-clean": "*",
 		"grunt-contrib-cssmin": "*",
 		"grunt-contrib-htmlmin": "*",
@@ -22,8 +23,8 @@
 		"grunt-contrib-stylus": "*",
 		"grunt-contrib-uglify": "*",
 		"grunt-contrib-watch": "*",
-		"grunt-html-smoosher": "*",
 		"grunt-image-embed": "*",
+		"grunt-inline": "*",
 		"grunt-sync": "*",
 		"matchdep": "*"
 	},

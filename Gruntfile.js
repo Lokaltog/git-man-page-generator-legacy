@@ -178,7 +178,7 @@ module.exports = function (grunt) {
 				},
 			},
 		},
-		smoosher: {
+		inline: {
 			all: {
 				files: {
 					'webroot/index.html': 'webroot/index.html',
@@ -210,7 +210,7 @@ module.exports = function (grunt) {
 		'cssmin:all',
 		'htmlmin:all',
 		'imageEmbed:all',
-		'smoosher:all',
+		'inline:all',
 		'clean:all',
 	])
 }
