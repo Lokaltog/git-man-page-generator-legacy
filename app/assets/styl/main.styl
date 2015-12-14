@@ -28,10 +28,6 @@ p
 code
 	font-family: $font-monospace
 
-header, #contents, footer, .disclaimer
-	margin: $margin auto
-	width: $width
-
 .disclaimer
 	background: #fed
 	padding: ($margin / 2) 0
@@ -72,7 +68,7 @@ header
 			border: 0
 			color: #fff
 			cursor: pointer
-			font: bold $font-size/@height $font-main
+			font: bold $font-size\/@height $font-main
 			margin: 0
 			padding: 0 ($margin / 2)
 			&:hover
@@ -80,7 +76,6 @@ header
 
 #contents
 	margin: $margin auto
-	width: $width
 
 	h1
 		color: $color-theme
@@ -124,3 +119,7 @@ footer
 
 	p
 		margin: ($margin / 2) 0 0 0
+
+header, #contents, footer, .disclaimer
+	margin: $margin auto
+	max-width: $width
