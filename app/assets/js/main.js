@@ -71,7 +71,7 @@
 		$('.command-description').innerHTML = commandName + ' ' + commandDescription
 
 		// arguments
-		var arguments = []
+		var args = []
 		var rawArguments = []
 		var argument = ''
 		for (i = 0; i < randomInt(2, 4); i += 1) {
@@ -93,9 +93,9 @@
 				}
 			}
 
-			arguments.push(argument)
+			args.push(argument)
 		}
-		$('.command-arguments').innerHTML = ' ' + arguments.join(' ')
+		$('.command-arguments').innerHTML = ' ' + args.join(' ')
 
 		// description
 		var description = ''
