@@ -1,0 +1,39 @@
+depcache-data:
+  # Cached dependencies for npm/pip
+  image: lokaltog/baseimage
+  volumes:
+    - /var/www/node_modules
+  command: /bin/true
+
+app-common:
+  image: lokaltog/nginx-statichost
+  environment:
+    - VIRTUAL_HOST=git-man-page-generator.lokaltog.net,git-man-page-generator.lokaltog.net.test
+    - APP_ORIGIN=git@github.com:Lokaltog/git-man-page-generator.git
+    - APP_BRANCH=develop
+    - APP_COMMIT=HEAD
+    - APP_NAME=git-man-page-generator.lokaltog.net
+  log_driver: syslog
+  log_opt:
+    tag: '{{.ImageName}}/{{.Name}}'
+
+production:
+  extends: app-common
+  volumes_from:
+    - depcache-data
+  environment:
+    - APP_ENV=production
+    - CERT_NAME=lokaltog.net
+  volumes:
+    - ./keys:/keys
+    - ./run:/etc/service/app/run
+
+development:
+  extends: app-common
+  volumes_from:
+    - depcache-data
+  environment:
+    - APP_ENV=development
+    - CERT_NAME=test
+  volumes:
+    - ./:/var/www

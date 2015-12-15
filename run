@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Set APP_ENV=production to force production build
+if [[ "$APP_ENV" != 'development' ]]; then
+    as_www() {
+        sudo -su www-data HOME=/var/www "$@"
+    }
+
+    pushd /var/www
+
+    chown www-data: -R /var/www
+
+    git init
+    git remote add origin $APP_ORIGIN
+    GIT_SSH_COMMAND="ssh -i /keys/deployment/${APP_NAME}-deployment" git pull origin --recurse-submodules $APP_BRANCH
+    git checkout $APP_COMMIT
+    git submodule init
+    git submodule update --recursive
+
+    as_www npm install
+    as_www npm update
+    as_www node_modules/.bin/grunt production
+
+    popd
+fi
+
+exec nginx -g 'daemon off;' 2>&1
